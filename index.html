@@ -6,22 +6,56 @@
 svg{
 	display: inline;
 }
+
 </style>
 </head>
 <body>
-<svg width="1100" height="600" style="background-color:white">
+<svg width="100%" height="600" style="background-color:white">
   <mask id="svgmask1">
-    <path xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="#555" stroke-width="1" d="m0,200 86-202h248l-86,202z"/>
+    <polygon points="159,0 612,0 453,396 0,396" style="fill:yellow;stroke:green;stroke-width:0" />
   </mask>
-  <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="röd_s2.png" mask="url(#svgmask1)"></image>
 
-  <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="röd_s2.png" mask="url(#svgmask1)" transform="translate(250,0)"></image>
-
-  <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="röd_s2.png" mask="url(#svgmask1)" transform="translate(500,0)"></image>
-
-  <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="röd_s2.png" mask="url(#svgmask1)" transform="translate(750,0)"></image>
 
 </svg>
 
+<script>
+
+  offsetX = 475;
+  maskUrl = "url(#svgmask1)";
+  nSXLink = "http://www.w3.org/1999/xlink";
+  let offsetCount = 1;
+  let imageCount = 0;
+  let images = ["röd_m3.png", "grön_m3.png", "grön_m3S.png"];
+
+
+  let svg = document.querySelector("svg");
+  console.log(svg);
+
+  svg.appendChild(makeRombImage(images[0], 0));
+
+  svg.appendChild(makeRombImage(images[1], 1));
+
+  svg.appendChild(makeRombImage(images[2], 2));
+
+  function makeRombImage(imageFile, offsetPos){
+    let rombImage = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    rombImage.setAttribute("xmlns:xlink", nSXLink);
+    rombImage.id = "myi0" + offsetPos;
+    rombImage.setAttribute("href", imageFile);
+    rombImage.setAttribute("mask", maskUrl);
+    console.log("translate(" + offsetPos*offsetX + ", 0)");
+    rombImage.setAttribute("transform", "translate(" + offsetPos*offsetX + ", 0)");
+    return rombImage;
+  }
+
+</script>
+
 </body>
 </html>
+<!--
+
+
+
+
+  
+-->
